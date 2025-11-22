@@ -1,3 +1,10 @@
+# Here you are the Frontend Part of STANZA Project
+
+Made in React.js and MaterialUI (https://mui.com/) for a faster developing, it calls the STANZA backend (created in Lumen Laravel framework) in order to 
+manage the main aspects of a B&B/Holydays Stays, with bookings, customers and the calendar.
+Enjoy!
+Ps. if you want to see the backend code, the repository is simply called STANZA (:
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
