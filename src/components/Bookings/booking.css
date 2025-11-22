@@ -1,0 +1,16 @@
+.header{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.box{
+    width: 300px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+.box ::placeholder{
+    color: grey
+}
