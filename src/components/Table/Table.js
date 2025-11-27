@@ -13,10 +13,11 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import CloudDownloadRoundedIcon from '@mui/icons-material/CloudDownloadRounded';
 import { LinearProgress } from "@mui/material"
 import { useState, useEffect } from 'react';
 function Row(props) {
-  const { row } = props;
+  const { row, endpoint } = props;
   const [open, setOpen] = React.useState(false);
 
   const calculateDays = (date1,date2)=>{
@@ -39,6 +40,8 @@ function Row(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
+        { endpoint === 'bookings' ? ( 
+          <>
         <TableCell component="th" scope="row">
           {row.Nome + " " +row.Cognome}
         </TableCell>
@@ -46,10 +49,23 @@ function Row(props) {
         <TableCell align="right">{row.Partenza}</TableCell>
         <TableCell align="right">{calculateDays(row.Partenza,row.Arrive)}</TableCell>
         <TableCell align="right">{row.person}</TableCell>
-
+        </>
+        ) : (
+        <> 
+        <TableCell component="th" scope="row">
+          {row.name + " " + row.surname}
+        </TableCell>
+        <TableCell align="right">{row.gender}</TableCell>  
+        <TableCell align="right">{row.nation}</TableCell>  
+        <TableCell align="right">{row.birthday}</TableCell>
+        <TableCell align="right">{row.email}</TableCell>
+        <TableCell align="right">{row.phone}</TableCell>   
+        <TableCell align="right"><a href={row.document_url} target="_blank" rel="noopener noreferrer"><CloudDownloadRoundedIcon/></a></TableCell> 
+        </> 
+      )}
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={ endpoint === 'bookings' ? 6 : 8}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
@@ -126,8 +142,8 @@ export default function CollapsibleTable(props) {
     }
 
     const filteredData = originalData.filter((item) =>
-        item['Nome'].toLowerCase().includes(searchString.toLowerCase()) ||
-        item['Cognome'].toLowerCase().includes(searchString.toLowerCase())
+        item['Nome'].toLowerCase().includes(searchString.toLowerCase()) 
+      // || item['Cognome'].toLowerCase().includes(searchString.toLowerCase())
       );
       if(filteredData.length > 0) {
         setData(filteredData)
@@ -145,17 +161,31 @@ export default function CollapsibleTable(props) {
         <TableHead>
           <TableRow>
             <TableCell />
+            { endpoint === 'bookings' ? (
+            <>
             <TableCell>Nome e Cognome</TableCell>
             <TableCell align="right">Data Arrivo</TableCell>
             <TableCell align="right">Data Partenza</TableCell>
             <TableCell align="right">N. Notti</TableCell>
             <TableCell align="right">N. Persone</TableCell>
+            </>) :
+            (
+              <>
+            <TableCell>Nome e Cognome</TableCell>
+            <TableCell align="right">Sesso</TableCell>
+            <TableCell align="right">Nazionalità</TableCell>
+            <TableCell align="right">Data di Nascita</TableCell>
+            <TableCell align="right">Email</TableCell>
+            <TableCell align="right">Telefono</TableCell>
+            <TableCell align="right">Documento</TableCell>
+            </>
+            )}
           </TableRow>
         </TableHead>
         <TableBody>
            {!error ? (
             data.map((row) => (
-              <Row key={row.id} row={row} />
+              <Row key={row.id} row={row} endpoint={endpoint} />
             ))) : 
           (<div>{error}</div>)}
         </TableBody>
