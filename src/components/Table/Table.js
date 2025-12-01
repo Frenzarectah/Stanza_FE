@@ -45,22 +45,22 @@ function Row(props) {
         <TableCell component="th" scope="row">
           {row.Nome + " " +row.Cognome}
         </TableCell>
-        <TableCell align="right">{row.Arrive}</TableCell>
-        <TableCell align="right">{row.Partenza}</TableCell>
-        <TableCell align="right">{calculateDays(row.Partenza,row.Arrive)}</TableCell>
-        <TableCell align="right">{row.person}</TableCell>
+        <TableCell>{row.Arrive}</TableCell>
+        <TableCell>{row.Partenza}</TableCell>
+        <TableCell>{calculateDays(row.Partenza,row.Arrive)}</TableCell>
+        <TableCell>{row.person}</TableCell>
         </>
         ) : (
         <> 
         <TableCell component="th" scope="row">
           {row.name + " " + row.surname}
         </TableCell>
-        <TableCell align="right">{row.gender}</TableCell>  
-        <TableCell align="right">{row.nation}</TableCell>  
-        <TableCell align="right">{row.birthday}</TableCell>
-        <TableCell align="right">{row.email}</TableCell>
-        <TableCell align="right">{row.phone}</TableCell>   
-        <TableCell align="right"><a href={row.document_url} target="_blank" rel="noopener noreferrer"><CloudDownloadRoundedIcon/></a></TableCell> 
+        <TableCell>{row.gender}</TableCell>  
+        <TableCell>{row.nation}</TableCell>  
+        <TableCell>{row.birthday}</TableCell>
+        <TableCell>{row.email}</TableCell>
+        <TableCell>{row.phone}</TableCell>   
+        <TableCell><a href={row.document_url} target="_blank" rel="noopener noreferrer"><CloudDownloadRoundedIcon/></a></TableCell> 
         </> 
       )}
       </TableRow>
@@ -109,7 +109,7 @@ Row.propTypes = {
 
 export default function CollapsibleTable(props) {
 
-  const {endpoint, searchString } = props;
+  const {endpoint, searchString, keys } = props;
     const [data, setData] = useState([])
     const [error, setError] = useState("")
     const [originalData, setOriginalData] = useState([])
@@ -142,8 +142,8 @@ export default function CollapsibleTable(props) {
     }
 
     const filteredData = originalData.filter((item) =>
-        item['Nome'].toLowerCase().includes(searchString.toLowerCase()) 
-      // || item['Cognome'].toLowerCase().includes(searchString.toLowerCase())
+        item['name'].toLowerCase().includes(searchString.toLowerCase()) 
+       || item['surname'].toLowerCase().includes(searchString.toLowerCase())
       );
       if(filteredData.length > 0) {
         setData(filteredData)
@@ -161,33 +161,17 @@ export default function CollapsibleTable(props) {
         <TableHead>
           <TableRow>
             <TableCell />
-            { endpoint === 'bookings' ? (
             <>
-            <TableCell>Nome e Cognome</TableCell>
-            <TableCell align="right">Data Arrivo</TableCell>
-            <TableCell align="right">Data Partenza</TableCell>
-            <TableCell align="right">N. Notti</TableCell>
-            <TableCell align="right">N. Persone</TableCell>
-            </>) :
-            (
-              <>
-            <TableCell>Nome e Cognome</TableCell>
-            <TableCell align="right">Sesso</TableCell>
-            <TableCell align="right">Nazionalità</TableCell>
-            <TableCell align="right">Data di Nascita</TableCell>
-            <TableCell align="right">Email</TableCell>
-            <TableCell align="right">Telefono</TableCell>
-            <TableCell align="right">Documento</TableCell>
+            {keys.map((key)=><TableCell>{key}</TableCell>) }
             </>
-            )}
           </TableRow>
         </TableHead>
         <TableBody>
            {!error ? (
             data.map((row) => (
-              <Row key={row.id} row={row} endpoint={endpoint} />
+              <Row key={row.id} row={row} endpoint={endpoint} keys={keys} />
             ))) : 
-          (<div>{error}</div>)}
+          (<TableCell>{error}</TableCell>)}
         </TableBody>
       </Table>
     </TableContainer>: <LinearProgress/>

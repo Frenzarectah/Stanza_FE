@@ -5,6 +5,7 @@ import InputBase from '@mui/material/InputBase';
 import BasicModal from "../Modal/Modal";
 
 const Customers = () =>{
+    const keys = ['Nome e Cognome', 'Sesso', 'Nazionalità','Data di nascita', 'Email', 'Telefono', 'Documento']
 
     const [stringToFind, setStringToFind] = useState("")
 
@@ -18,7 +19,7 @@ const Customers = () =>{
              <BasicModal/> 
              </div>
         </div>
-        <Table endpoint="customers" searchString={stringToFind}/>)
+        <Table endpoint="customers" searchString={stringToFind} keys={keys}/>)
         </>  
     )
 }

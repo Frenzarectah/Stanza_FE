@@ -7,7 +7,7 @@ import BasicModal from "../Modal/Modal";
 
 
 const Bookings = () =>{
-
+    const keys = ['Nome e Cognome','Data Arrivo', 'Data Partenza','N.Notti', 'N.Persone']
     const [stringToFind, setStringToFind] = useState("")
 
     return(
@@ -20,7 +20,7 @@ const Bookings = () =>{
              <BasicModal/> 
              </div>
         </div>
-        <Table endpoint="bookings" searchString={stringToFind}/>)
+        <Table endpoint="bookings" searchString={stringToFind} keys={keys}/>)
         </>  
     )
 }
