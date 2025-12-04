@@ -111,8 +111,8 @@ export default function BasicModal(props) {
             (
             <>
             <Box sx={{display: 'flex', margin: '10px'}}>
-                <Input placeholder='Name' name="Nome" value={formData.name} sx={{margin:'10px'}} onChange={handleData}></Input>
-                <Input placeholder='Surname' name="Cognome" value={formData.surname} sx={{margin:'10px'}} onChange={handleData}></Input> 
+                <Input placeholder='Name' name="name" value={formData.name} sx={{margin:'10px'}} onChange={handleData}></Input>
+                <Input placeholder='Surname' name="surname" value={formData.surname} sx={{margin:'10px'}} onChange={handleData}></Input> 
             </Box> 
             <Box sx={{display: 'flex', margin: '10px', justifyContent: 'space-between'}}>      
                 <Input placeholder='eMail' type="email" name="Email" value={formData.email} sx={{margin:'10px'}} onChange={handleData}></Input>
