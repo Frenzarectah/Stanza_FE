@@ -103,6 +103,9 @@ export default function BasicModal(props) {
              {isOK &&         
                 <Alert icon={<CheckIcon fontSize="inherit" />} variant="filled" severity="success">Element Added!</Alert>
             }
+            {error && 
+              <Alert icon={<CheckIcon fontSize="inherit" />} variant="filled" severity="error">{error}</Alert>
+            }
             <Typography>Create a New {endpoint} </Typography>
             { endpoint === 'bookings' ? 
             (

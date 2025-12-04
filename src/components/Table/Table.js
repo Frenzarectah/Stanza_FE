@@ -43,7 +43,7 @@ function Row(props) {
         { endpoint === 'bookings' ? ( 
           <>
         <TableCell component="th" scope="row">
-          {row.Nome + " " +row.Cognome}
+          {row.name+ " " +row.surname}
         </TableCell>
         <TableCell>{row.Arrive}</TableCell>
         <TableCell>{row.Partenza}</TableCell>
