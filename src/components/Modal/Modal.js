@@ -101,7 +101,7 @@ export default function BasicModal(props) {
       >
         <Box sx={style}>
              {isOK &&         
-                <Alert icon={<CheckIcon fontSize="inherit" />} variant="filled" severity="success">Booking Added!</Alert>
+                <Alert icon={<CheckIcon fontSize="inherit" />} variant="filled" severity="success">Element Added!</Alert>
             }
             <Typography>Create a New {endpoint} </Typography>
             { endpoint === 'bookings' ? 
