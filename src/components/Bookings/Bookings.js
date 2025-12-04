@@ -8,6 +8,7 @@ import BasicModal from "../Modal/Modal";
 
 const Bookings = () =>{
     const keys = ['Nome e Cognome','Data Arrivo', 'Data Partenza','N.Notti', 'N.Persone']
+
     const [stringToFind, setStringToFind] = useState("")
 
     return(
@@ -17,7 +18,7 @@ const Bookings = () =>{
             <div className="box">
             <SearchIcon/>
              <InputBase placeholder="Search..." onChange={(e) => setStringToFind(e.target.value)} sx={{'border': '1px solid #1976d2','borderRadius': '5px'}}/>
-             <BasicModal/> 
+             <BasicModal endpoint='bookings'/> 
              </div>
         </div>
         <Table endpoint="bookings" searchString={stringToFind} keys={keys}/>)

@@ -12,11 +12,11 @@ const Customers = () =>{
     return(
         <>
         <div className="header">
-            <h3>Bookings</h3>
+            <h3>Customers</h3>
             <div className="box">
             <SearchIcon/>
              <InputBase placeholder="Search..." onChange={(e) => setStringToFind(e.target.value)} sx={{'border': '1px solid #1976d2','borderRadius': '5px'}}/>
-             <BasicModal/> 
+             <BasicModal endpoint='customers'/>  
              </div>
         </div>
         <Table endpoint="customers" searchString={stringToFind} keys={keys}/>)
