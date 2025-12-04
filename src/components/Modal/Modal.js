@@ -33,7 +33,7 @@ const VisuallyHiddenInput = styled('input')({
 export default function BasicModal(props) {
   const {endpoint} = props
   const [open, setOpen] = React.useState(false);
-  const [error, setError] = React.useState("");
+  const [error, setError] = React.useState({});
   const [isOK, setIsOK] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -104,7 +104,7 @@ export default function BasicModal(props) {
                 <Alert icon={<CheckIcon fontSize="inherit" />} variant="filled" severity="success">Element Added!</Alert>
             }
             {error && 
-              <Alert icon={<CheckIcon fontSize="inherit" />} variant="filled" severity="error">{error}</Alert>
+              <Alert icon={<CheckIcon fontSize="inherit" />} variant="filled" severity="error">{JSON.stringify(error)}</Alert>
             }
             <Typography>Create a New {endpoint} </Typography>
             { endpoint === 'bookings' ? 
