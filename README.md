@@ -1,3 +1,4 @@
+#WIP - MAYBE SOMETHING WILL NOT WORKS PROPERLY :,)
 # Here you are the Frontend Part of STANZA Project
 
 Made in React.js and MaterialUI (https://mui.com/) for a faster developing, it calls the STANZA backend (created in Lumen Laravel framework) in order to 
